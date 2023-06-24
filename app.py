@@ -3,9 +3,12 @@ from werkzeug.utils import secure_filename
 from flask_cors import CORS
 from datetime import datetime
 
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 app = Flask(__name__)
-
-
 
 
 CORS(app)
@@ -59,4 +62,8 @@ def getForm():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(
+        debug=True,
+        port=os.getenv("PORT"),
+        host=os.getenv("HOST")
+    )

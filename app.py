@@ -34,14 +34,14 @@ def upload_file():
 
         now = datetime.now()
 
-        saved_name = f'{var_name}-{now.strftime("%m/%d/%Y, %H:%M:%S")}-{f.filename}'
+        saved_name = secure_filename(f'{var_name}-{now.strftime("%m/%d/%Y, %H:%M:%S")}-{f.filename}')
 
         time.sleep(1)
 
-        # f.save(secure_filename(saved_name))
+        f.save(saved_name)
         return {
             'ok': True,
-            'file_name': secure_filename(saved_name)
+            'file_name': saved_name
         }
    
 

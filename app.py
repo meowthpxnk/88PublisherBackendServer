@@ -5,6 +5,7 @@ from datetime import datetime
 
 from dotenv import load_dotenv
 import os
+import time
 
 load_dotenv()
 
@@ -34,27 +35,32 @@ def upload_file():
         now = datetime.now()
 
         saved_name = f'{var_name}-{now.strftime("%m/%d/%Y, %H:%M:%S")}-{f.filename}'
-        f.save(secure_filename(saved_name))
+
+        time.sleep(1)
+
+        # f.save(secure_filename(saved_name))
         return {
             'ok': True,
-            'file_name': saved_name
+            'file_name': secure_filename(saved_name)
         }
    
 
 @app.route('/getForm', methods=['POST'])
 def getForm():
     if request.method == 'POST':
-        form = request.form
-        files = request.files
+        # form = request.form
+        # files = request.files
 
-        data = {
-            'cover': files.get('cover'),
-            'name': form.get('name'),
-            'surname': form.get('surname'),
-            'phone': form.get('phone')
-        }
+        # data = {
+        #     'cover': files.get('cover'),
+        #     'name': form.get('name'),
+        #     'surname': form.get('surname'),
+        #     'phone': form.get('phone')
+        # }
 
-        print(data)
+        # data = request.json
+
+        print(request.json)
 
     return {
         'ok': True
